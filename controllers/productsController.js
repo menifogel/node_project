@@ -1,19 +1,18 @@
-import { log } from "console";
 import * as BL from "../BL/productsBL.js"
  
-export function getProducts(req, res){
-    res.send(BL.getProducts());
+export async function getProducts(req, res){
+    const data = await BL.getProducts()
+    res.send(data);
 } 
-export function getProductsByID (req, res) {
+export function getProductByID (req, res) {
     const id = req.params.id
-    const foo = BL.getProductsByID(id)
+    const foo = BL.getProductByID(id)
     res.send(foo)
 }
-// // export function newProduct (req, res) {
-// //     const product = req.body;
-// //     db.push(product)
-
-//     res.send({
-//         message: 'Product added successfully'
-//       });
-// }
+export function addnewProduct (req, res) {
+    const body = req.body;
+    BL.newProduct(body)
+    res.send({
+        message: 'Product added successfully'
+      });
+}
